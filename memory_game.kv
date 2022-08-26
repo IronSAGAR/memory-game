@@ -1,0 +1,142 @@
+<WindowManager>:
+    id: manager_1
+
+    screen_one : screen_one
+    screen_two : screen_two
+    screen_three : screen_three
+    
+
+    FirstWindow:
+        id: screen_one
+        name: "screen1"
+        manager: manager_1 
+    
+    SecondWindow: 
+        id: screen_two
+        name: "screen2"
+        manager: manager_1
+    
+    ThirdWindow:
+        id: screen_three
+        name: "screen3"
+        manager: manager_1
+    
+
+<FirstWindow>:
+    GridLayout:
+        cols: 1
+        size: root.size
+
+        Label:
+            text: "Memory Game"
+            font_size: 64
+            color: 1,0,0,1
+
+        Label:
+            text: "How sharp you think your memory is? "
+            font_size: 24
+
+
+        Label:
+            text: "Lets find out."
+            font_size: 24
+
+        Button:
+            text: "START"
+            font_size: 48
+            color: 0,0,1,1
+            background_color: 1,1,1,1
+            on_release:
+
+                app.root.current = "screen2"
+                root.manager.transition.direction = "left"
+
+<SecondWindow>:
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: "Remember this numbers"
+            font_size: 48
+            color: 1,0,0,1
+        GridLayout:
+            cols: 6
+            Label:
+                id: label1
+                text :str(root.OG[0])
+                font_size: 48
+            Label:
+                id: label2
+                text : str(root.OG[1])
+                font_size: 48
+            Label:
+                id: label3
+                text : str(root.OG[2])
+                font_size: 48
+            Label:
+                id: label4
+                text : str(root.OG[3])
+                font_size: 48
+            Label:
+                id: label5
+                text : str(root.OG[4])
+                font_size: 48
+            Label:
+                id: label6
+                text : str(root.OG[5])
+                font_size: 48
+
+        GridLayout:
+            cols: 1
+            Button:
+                text: "READY?"
+                on_release:
+                    app.root.current = "screen3"
+                    root.manager.transition.direction = "left"
+
+
+<ThirdWindow>:
+
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 2
+            Label:
+                text: ""
+            Label:
+                id : score
+                text:"score :%i"%root.score
+                font_size: 32
+
+        Label:
+            id: question
+            text: "which one is the new number?"
+            font_size: 32
+
+        GridLayout:
+            cols: 4
+
+            Button:
+                id: opt1
+                text: str(root.opt[0])
+                on_press: root.check(root.opt[0])
+                font_size: 32
+            Button:
+                id: opt2
+                text: str(root.opt[1])
+                on_press: root.check(root.opt[1])
+                font_size: 32
+            Button:
+                id: opt3
+                text: str(root.opt[2])
+                on_press: root.check(root.opt[2])
+                font_size: 32
+            Button:
+                id: opt4
+                text: str(root.opt[3])
+                on_press: root.check(root.opt[3])
+                font_size: 32
+
+
